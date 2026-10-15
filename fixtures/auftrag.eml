@@ -1,0 +1,9 @@
+From: Einkauf Nordwerk <einkauf@nordwerk.example>
+To: vertrieb@beispiel.example
+Subject: Bestellung PO-4401
+Date: Thu, 12 Mar 2026 14:00:00 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Bitte die Bestellung PO-4401 über 250,00 EUR bestätigen.

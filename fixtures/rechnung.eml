@@ -1,0 +1,23 @@
+From: Nordwerk GmbH <buchhaltung@nordwerk.example>
+To: eingang@beispiel.example
+Subject: Rechnung RE-2026-0142
+Date: Mon, 02 Mar 2026 09:00:00 +0100
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="grenze"
+
+--grenze
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Guten Tag,
+
+anbei die Rechnung RE-2026-0142 über 1.190,00 EUR.
+
+--grenze
+Content-Type: application/pdf; name="rechnung.pdf"
+Content-Disposition: attachment; filename="rechnung.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjEK
+
+--grenze--

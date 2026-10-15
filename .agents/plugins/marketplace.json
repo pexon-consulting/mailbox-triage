@@ -1,0 +1,20 @@
+{
+  "name": "mailbox-triage",
+  "interface": {
+    "displayName": "Mailbox Triage"
+  },
+  "plugins": [
+    {
+      "name": "mailbox-triage",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

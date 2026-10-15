@@ -1,0 +1,15 @@
+{
+  "name": "mailbox-triage",
+  "metadata": {
+    "description": "Mailbox Triage ist ein lokaler Postfach-Check. Er sortiert einen Export in Rechnung, Mahnung, Angebot und Auftrag. Beispiel von Pexon Consulting GmbH, gepflegt von Phillip Pham."
+  },
+  "owner": {
+    "name": "Phillip Pham"
+  },
+  "plugins": [
+    {
+      "name": "mailbox-triage",
+      "source": "./"
+    }
+  ]
+}

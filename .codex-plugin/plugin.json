@@ -1,0 +1,36 @@
+{
+  "name": "mailbox-triage",
+  "description": "Mailbox Triage ist ein lokaler Postfach-Check. Er sortiert einen Export in Rechnung, Mahnung, Angebot und Auftrag. Beispiel von Pexon Consulting GmbH, gepflegt von Phillip Pham.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Phillip Pham",
+    "url": "https://github.com/phampexon"
+  },
+  "homepage": "https://pexon-consulting.de/ki-beratung/document-intelligence/",
+  "repository": "https://github.com/pexon-consulting/mailbox-triage",
+  "license": "MIT",
+  "keywords": [
+    "mailbox",
+    "invoice",
+    "rechnung",
+    "document-intelligence",
+    "claude-skill",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Mailbox Triage",
+    "shortDescription": "Postfach lokal in Rechnung, Mahnung, Angebot und Auftrag sortieren",
+    "longDescription": "Mailbox Triage ist ein lokaler Postfach-Check. Er sortiert einen Export in Rechnung, Mahnung, Angebot und Auftrag. Beispiel von Pexon Consulting GmbH, gepflegt von Phillip Pham.\n\nDer Befehl liest .eml, .mbox oder einen Ordner auf diesem Rechner und schreibt report.md plus report.json. PDF-Anhänge werden nur mit Dateinamen genannt. Es gibt keinen OCR-Lauf, keinen Upload und keinen Schreibweg nach SAP, DATEV oder ABAS.",
+    "developerName": "Pexon Consulting GmbH",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://pexon-consulting.de/ki-beratung/document-intelligence/",
+    "privacyPolicyURL": "https://github.com/pexon-consulting/mailbox-triage/blob/main/PRIVACY.md",
+    "defaultPrompt": [
+      "Sortiere den Ordner postfach in Rechnung, Mahnung, Angebot und Auftrag.",
+      "Klassifiziere diese eml-Dateien lokal und schreibe report.json.",
+      "Zeig die Zeilen mit Sicherheit niedrig."
+    ]
+  }
+}

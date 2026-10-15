@@ -1,0 +1,20 @@
+{
+  "name": "mailbox-triage",
+  "description": "Mailbox Triage ist ein lokaler Postfach-Check. Er sortiert einen Export in Rechnung, Mahnung, Angebot und Auftrag. Beispiel von Pexon Consulting GmbH, gepflegt von Phillip Pham.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Phillip Pham",
+    "url": "https://github.com/phampexon"
+  },
+  "homepage": "https://pexon-consulting.de/ki-beratung/document-intelligence/",
+  "repository": "https://github.com/pexon-consulting/mailbox-triage",
+  "license": "MIT",
+  "keywords": [
+    "mailbox",
+    "invoice",
+    "rechnung",
+    "document-intelligence",
+    "claude-skill",
+    "codex"
+  ]
+}

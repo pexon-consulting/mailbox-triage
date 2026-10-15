@@ -1,0 +1,29 @@
+[project]
+name = "mailbox-triage"
+version = "0.1.0"
+description = "Lokaler Postfach-Check. Sortiert einen Export in Rechnung, Mahnung, Angebot und Auftrag."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Phillip Pham" }]
+keywords = ["mailbox", "invoice", "rechnung", "document-intelligence"]
+
+[project.urls]
+Homepage = "https://pexon-consulting.de/ki-beratung/document-intelligence/"
+Repository = "https://github.com/pexon-consulting/mailbox-triage"
+
+[project.scripts]
+mailbox-triage = "mailbox_triage.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
