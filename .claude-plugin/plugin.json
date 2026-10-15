@@ -13,6 +13,9 @@
     "mailbox",
     "invoice",
     "rechnung",
+    "mahnung",
+    "angebot",
+    "auftrag",
     "document-intelligence",
     "claude-skill",
     "codex"

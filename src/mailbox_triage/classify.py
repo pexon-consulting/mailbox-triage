@@ -18,19 +18,26 @@ KEYWORDS: dict[str, tuple[str, ...]] = {
 THRESHOLD = 3
 MARGIN = 2
 
-_AMOUNT = re.compile(
-    r"(?:EUR|€)\s*(\d{1,3}(?:\.\d{3})*,\d{2}|\d+,\d{2}|\d{1,3}(?:,\d{3})*\.\d{2}|\d+\.\d{2})"
-    r"|(\d{1,3}(?:\.\d{3})*,\d{2}|\d+,\d{2}|\d{1,3}(?:,\d{3})*\.\d{2}|\d+\.\d{2})\s*(?:EUR|€)",
-    re.IGNORECASE,
+_SCAN = 50_000
+_CURRENCY = re.compile(r"€|\bEUR\b", re.IGNORECASE)
+_AMOUNT_TOKEN = re.compile(
+    r"(?<![\d.,])("
+    r"-?\d{1,3}(?:,\d{3})+\.\d{2}"
+    r"|-?\d{1,4}(?:[.\u00a0\u202f ]\d{3})+,\d{2}"
+    r"|-?\d+,\d{2}"
+    r"|-?\d+\.\d{2}"
+    r")(?![\d.,])"
 )
 _NUMBER = re.compile(r"\b(?:RE-\d{4}-\d+|AN-\d+|PO-\d+|INV-\d+)\b", re.IGNORECASE)
 
 
 def hits(text: str, keywords: tuple[str, ...]) -> int:
+    """Stichwort einmal, am Wortanfang oder Wortende. Schlussrechnung zählt als Rechnung."""
     lowered = text.lower()
     count = 0
     for keyword in keywords:
-        if re.search(rf"\b{re.escape(keyword)}\b", lowered):
+        escaped = re.escape(keyword)
+        if re.search(rf"(?<!\w){escaped}|{escaped}(?!\w)", lowered):
             count += 1
     return count
 
@@ -60,22 +67,44 @@ def rechnungsnummer(text: str) -> str | None:
 
 
 def betrag(text: str) -> str | None:
-    match = _AMOUNT.search(text)
-    if not match:
-        return None
-    raw = next(group for group in match.groups() if group)
-    return _normalize_amount(raw)
+    sample = text[:_SCAN]
+    for mark in _CURRENCY.finditer(sample):
+        start = max(0, mark.start() - 40)
+        window = sample[start : min(len(sample), mark.end() + 40)]
+        currency_at = mark.start() - start
+        currency_end = mark.end() - start
+        best: re.Match[str] | None = None
+        best_dist = 9
+        for token in _AMOUNT_TOKEN.finditer(window):
+            if token.end() <= currency_at:
+                dist = currency_at - token.end()
+            elif token.start() >= currency_end:
+                dist = token.start() - currency_end
+            else:
+                dist = 0
+            if dist < best_dist:
+                best = token
+                best_dist = dist
+        if best is not None:
+            return _normalize_amount(best.group(1))
+    return None
 
 
 def waehrung(text: str) -> str | None:
-    if re.search(r"EUR|€", text, re.IGNORECASE):
+    if _CURRENCY.search(text[:_SCAN]):
         return "EUR"
     return None
 
 
 def _normalize_amount(raw: str) -> str:
+    negative = raw.startswith("-")
+    raw = raw.lstrip("-")
+    raw = raw.replace("\u00a0", "").replace("\u202f", "").replace(" ", "")
     if "," in raw and raw.rfind(",") > raw.rfind("."):
         whole = raw.replace(".", "").replace(",", ".")
     else:
         whole = raw.replace(",", "")
-    return f"{float(whole):.2f}"
+    value = float(whole)
+    if negative:
+        value = -value
+    return f"{value:.2f}"

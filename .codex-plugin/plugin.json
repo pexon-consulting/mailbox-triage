@@ -13,6 +13,9 @@
     "mailbox",
     "invoice",
     "rechnung",
+    "mahnung",
+    "angebot",
+    "auftrag",
     "document-intelligence",
     "claude-skill",
     "codex"
@@ -21,7 +24,7 @@
   "interface": {
     "displayName": "Mailbox Triage",
     "shortDescription": "Postfach lokal in Rechnung, Mahnung, Angebot und Auftrag sortieren",
-    "longDescription": "Mailbox Triage ist ein lokaler Postfach-Check. Er sortiert einen Export in Rechnung, Mahnung, Angebot und Auftrag. Beispiel von Pexon Consulting GmbH, gepflegt von Phillip Pham.\n\nDer Befehl liest .eml, .mbox oder einen Ordner auf diesem Rechner und schreibt report.md plus report.json. PDF-Anhänge werden nur mit Dateinamen genannt. Es gibt keinen OCR-Lauf, keinen Upload und keinen Schreibweg nach SAP, DATEV oder ABAS.",
+    "longDescription": "Mailbox Triage ist ein lokaler Postfach-Check. Er sortiert einen Export in Rechnung, Mahnung, Angebot und Auftrag. Beispiel von Pexon Consulting GmbH, gepflegt von Phillip Pham.\n\nEin Stichwort im Betreff zählt 3 Punkte, im Text 1 Punkt. Ab 3 Punkten gilt die Klasse. Der Befehl liest .eml, .mbox oder einen Ordner auf diesem Rechner und schreibt report.md plus report.json. PDF-Anhänge werden nur mit Dateinamen genannt. Es gibt keinen OCR-Lauf, keinen Upload und keinen Schreibweg nach SAP, DATEV oder ABAS.",
     "developerName": "Pexon Consulting GmbH",
     "category": "Productivity",
     "capabilities": ["Read", "Write"],

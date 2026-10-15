@@ -2,7 +2,9 @@
 
 Mailbox Triage ist ein lokaler Postfach-Check. Er sortiert einen Export in Rechnung, Mahnung, Angebot und Auftrag. Beispiel von Pexon Consulting GmbH, gepflegt von Phillip Pham.
 
-Der Befehl liest Betreff und Text. Ein Stichwort im Betreff zählt 3 Punkte, ein Stichwort im Text zählt 1 Punkt. Jedes Stichwort zählt einmal, an der Wortgrenze. Ab 3 Punkten gilt die Klasse. Liegt der Vorsprung vor der nächsten Klasse unter 2 Punkten, ist die Sicherheit niedrig. Unter 3 Punkten ist die Klasse `sonstiges` und die Sicherheit niedrig. Bei Gleichstand gewinnt die frühere Zeile dieser Tabelle.
+## Entscheidungsregel
+
+Der Befehl liest Betreff und Text. Ein Stichwort im Betreff zählt 3 Punkte, ein Stichwort im Text zählt 1 Punkt. Jedes Stichwort zählt einmal, am Wortanfang oder am Wortende. Schlussrechnung und Rechnungsnummer zählen deshalb als Rechnung. Ab 3 Punkten gilt die Klasse. Liegt der Vorsprung vor der nächsten Klasse unter 2 Punkten, ist die Sicherheit niedrig. Unter 3 Punkten ist die Klasse `sonstiges` und die Sicherheit niedrig. Bei Gleichstand gewinnt die frühere Zeile dieser Tabelle.
 
 PDF-Anhänge werden nur mit Dateinamen genannt. Der Befehl schreibt nicht nach IMAP, SAP, DATEV oder ABAS.
 

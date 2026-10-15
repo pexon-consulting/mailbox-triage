@@ -7,14 +7,16 @@ npx skills add pexon-consulting/mailbox-triage
 ```
 
 ```bash
-uvx --from git+https://github.com/pexon-consulting/mailbox-triage mailbox-triage classify ./postfach --out report.md
+uvx --from git+https://github.com/pexon-consulting/mailbox-triage@v0.1.0 mailbox-triage classify ./postfach --out report.md
 ```
 
 Claude Code hält das Skill aktuell mit `claude plugin marketplace add pexon-consulting/mailbox-triage`. Codex mit `codex plugin marketplace add pexon-consulting/mailbox-triage`. Die Zeile `npx skills add` ist die Kopie für beide. Sie zieht spätere Änderungen nicht von selbst.
 
 ## Klassen
 
-Ein Stichwort im Betreff zählt 3 Punkte, ein Stichwort im Text zählt 1 Punkt. Ab 3 Punkten gilt die Klasse. Liegt der Vorsprung unter 2 Punkten, ist die Sicherheit niedrig. Unter 3 Punkten: `sonstiges`. Die volle Tabelle steht in [docs/klassen.md](docs/klassen.md).
+Ein Stichwort im Betreff zählt 3 Punkte, ein Stichwort im Text zählt 1 Punkt. Jedes Stichwort zählt einmal, am Wortanfang oder am Wortende. Schlussrechnung und Rechnungsnummer zählen als Rechnung. Ab 3 Punkten gilt die Klasse. Liegt der Vorsprung unter 2 Punkten, ist die Sicherheit niedrig. Unter 3 Punkten ist die Klasse `sonstiges`. Bei Gleichstand gewinnt die frühere Zeile. Beträge stehen neben `EUR` oder `€`, zum Beispiel `1.190,00 EUR` oder `EUR 12,500.00`. Nummern haben die Form `RE-2026-0142`, `AN-88`, `PO-4401`, `INV-100`.
+
+Die volle Tabelle: [Entscheidungsregel](https://github.com/pexon-consulting/mailbox-triage/blob/v0.1.0/docs/klassen.md#entscheidungsregel).
 
 | Klasse | Stichworte |
 | --- | --- |
@@ -36,6 +38,6 @@ Der Pfad bleibt lokal. Es gibt keinen IMAP-Abruf, keinen Upload und keinen Schre
 
 ## Für Agenten
 
-Claude und Codex lesen [skills/mailbox-triage/SKILL.md](skills/mailbox-triage/SKILL.md). Dieselbe Datei liegt unter `.claude/skills/` und `.agents/skills/`. Nach einer Änderung an der kanonischen Datei: `python3 scripts/sync_skills.py`.
+Claude und Codex lesen [skills/mailbox-triage/SKILL.md](skills/mailbox-triage/SKILL.md). Die Ordner `.claude/skills/` und `.agents/skills/` sind Spiegel für diesen Checkout. Ein installiertes Plugin liest `skills/`. Nach einer Änderung an der kanonischen Datei: `python3 scripts/sync_skills.py`.
 
 Beispiel von Pexon Consulting GmbH, gepflegt von Phillip Pham. Nutzung nach MIT, ohne Support. Für den Einsatz bei Ihnen: https://pexon-consulting.de/ki-beratung/document-intelligence/

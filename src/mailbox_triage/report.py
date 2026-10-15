@@ -120,4 +120,14 @@ def schema_payload() -> dict:
 
 
 def _cell(value: str) -> str:
-    return value.replace("|", "\\|").replace("\n", " ")
+    cleaned: list[str] = []
+    for char in value:
+        if char in "\r\n\u2028\u2029" or ord(char) < 32 or char == "\u007f":
+            cleaned.append(" ")
+        elif char == "\\":
+            cleaned.append("\\\\")
+        elif char == "|":
+            cleaned.append("\\|")
+        else:
+            cleaned.append(char)
+    return "".join(cleaned)
